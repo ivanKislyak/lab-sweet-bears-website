@@ -27,19 +27,35 @@ custom_css = """
 .clean-image { border: none !important; background: transparent !important; }
 """
 
+def content_page_1():
+    gr.Markdown("### Контент главной страницы")
+
+def content_page_2():
+    gr.Markdown("### Панель управления аналитикой")
+
+def content_page_3():
+    gr.Markdown("### Настройки профиля пользователя")
+
 with gr.Blocks(css="static/css/base.css", js="static/js/base.js") as demo:
-    with gr.Tab("Главная"):
-        render_base_page("Главная страница", content_page_1)
-        gr.Image("static/images/page_1/logo.png", width=100, elem_classes=custom_css,
-                show_label=False,
-                interactive=False)
+    
+    # Красивый хедер сверху
+    with gr.Row(elem_classes="header-container"):
+        gr.Image(
+            "static/images/page_1/logo.png",
+            height=250,
+            show_label=False,
+            interactive=False,
+            elem_classes="custom_css"
+        )
+        gr.Markdown("# Мое приложение")
 
-    with gr.Tab("Аналитика"):
-        render_base_page("Панель управления", content_page_2)
-
-    with gr.Tab("Настройки"):
-        render_base_page("Настройки профиля", content_page_3)
-
+    with gr.Tabs():
+        with gr.Tab("Главная"):
+            content_page_1()
+        with gr.Tab("Аналитика"):
+            content_page_2()
+        with gr.Tab("Настройки"):
+            content_page_3()
 
 if __name__ == "__main__":
     demo.launch()
