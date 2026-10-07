@@ -20,9 +20,19 @@ def content_page_2():
 def content_page_3():
     pass
 
+custom_css = """
+.clean-image button { display: none !important; }
+.clean-image .icon-container { display: none !important; }
+.clean-image .image-container { padding: 0 !important; }
+.clean-image { border: none !important; background: transparent !important; }
+"""
+
 with gr.Blocks(css="static/css/base.css", js="static/js/base.js") as demo:
     with gr.Tab("Главная"):
         render_base_page("Главная страница", content_page_1)
+        gr.Image("static/images/page_1/logo.png", width=100, elem_classes=custom_css,
+                show_label=False,
+                interactive=False)
 
     with gr.Tab("Аналитика"):
         render_base_page("Панель управления", content_page_2)
@@ -32,4 +42,4 @@ with gr.Blocks(css="static/css/base.css", js="static/js/base.js") as demo:
 
 
 if __name__ == "__main__":
-    demo.launch(hot_reload=True)
+    demo.launch()
