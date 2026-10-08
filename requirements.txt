@@ -1,2 +1,2 @@
-gradio
+gradio==6.29.0
 python-dotenv
