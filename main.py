@@ -6,19 +6,10 @@ from html_blocks._header import include_header
 from base import render_base_page
 import gradio as gr
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent
 
 load_dotenv(BASE_DIR / '.env')
 
-
-def content_page_1():
-    pass
-
-def content_page_2():
-    pass
-
-def content_page_3():
-    pass
 
 custom_css = """
 .clean-image button { display: none !important; }
@@ -37,7 +28,7 @@ def content_page_3():
     gr.Markdown("### Настройки профиля пользователя")
 
 with gr.Blocks(css="static/css/base.css", js="static/js/base.js") as demo:
-    
+    include_header()
     # Красивый хедер сверху
     with gr.Row(elem_classes="header-container"):
         gr.Image(
@@ -45,7 +36,7 @@ with gr.Blocks(css="static/css/base.css", js="static/js/base.js") as demo:
             height=250,
             show_label=False,
             interactive=False,
-            elem_classes="custom_css"
+            elem_classes=["clean-image"]
         )
         gr.Markdown("# Мое приложение")
 
